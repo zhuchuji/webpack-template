@@ -1,14 +1,13 @@
 const webpackMerge = require('webpack-merge')
 const path = require('path')
-const commonConfig = require('./webpack.common.conf.js')
+const webpackBaseConf = require('./webpack.base.conf.js')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
-const extractTextPlugin = require('extract-text-webpack-plugin')
-const { setStyleRules } = require('./util.js')
+const { generateStyleRules } = require('./util.js')
 
-const devConfig = webpackMerge(commonConfig, {
+const webpackDevConfig = webpackMerge(webpackBaseConf, {
 	module: {
-		rules: [setStyleRules({ sourceMap: false, extract: false })]
+		rules: [generateStyleRules({ sourceMap: false, extract: false })]
 	},
 	devtool: '#cheap-module-eval-source-map',
 	devServer: {
@@ -25,11 +24,8 @@ const devConfig = webpackMerge(commonConfig, {
 			filename: 'index.html',
 			template: 'src/index.html',
 			inject: true
-		}),
-		// new extractTextPlugin({
-		// 	filename: 'styles/[name].[contenthash:8].css'
-		// })
+		})
 	]
 })
 
-module.exports = devConfig
+module.exports = webpackDevConfig

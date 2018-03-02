@@ -1,4 +1,4 @@
-const webpackTestConfig = require('../../build/webpack.test.conf.js')
+const webpackTestConf = require('../../build/webpack.test.conf.js')
 
 module.exports = function (config) {
   config.set({
@@ -9,9 +9,11 @@ module.exports = function (config) {
       './index.js': ['webpack', 'sourcemap']
     },
     browsers: ['ChromeHeadless'],
+    browserDisconnectTolerance: 10,
+    browserNoActivityTimeout: 100000,
     frameworks: ['mocha', 'chai'],
     reporters: ['spec', 'coverage'],
-    webpack: webpackTestConfig,
+    webpack: webpackTestConf,
     webpackMiddleware: {
       noInfo: true
     },

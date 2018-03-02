@@ -3,14 +3,14 @@ const path = require('path')
 const uglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const cleanWebpackPlugin = require('clean-webpack-plugin')
-const commonConfig = require('./webpack.common.conf.js')
+const webpackBaseConf = require('./webpack.base.conf.js')
 const webpack = require('webpack')
 const extractTextPlugin = require('extract-text-webpack-plugin')
-const { setStyleRules } = require('./util.js')
+const { generateStyleRules } = require('./util.js')
 
-const prodConfig = webpackMerge(commonConfig, {
+const webpackProdConfig = webpackMerge(webpackBaseConf, {
 	module: {
-		rules: [setStyleRules({ sourceMap: true, extract: true })]
+		rules: [generateStyleRules({ sourceMap: true, extract: true })]
 	},
 	devtool: 'source-map',
 	plugins: [
@@ -32,4 +32,4 @@ const prodConfig = webpackMerge(commonConfig, {
 	]
 })
 
-module.exports = prodConfig
+module.exports = webpackProdConfig

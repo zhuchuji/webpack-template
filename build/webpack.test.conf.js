@@ -1,11 +1,11 @@
-const webpackCommonConfig = require('./webpack.common.conf.js')
+const webpackBaseConf = require('./webpack.base.conf.js')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
-const { setStyleRules } = require('./util.js')
+const { generateStyleRules } = require('./util.js')
 
-const webpackTestConfig = merge(webpackCommonConfig, {
+const webpackTestConf = merge(webpackBaseConf, {
   module: {
-    rules: [setStyleRules({ sourceMap: false, extract: false })]
+    rules: [generateStyleRules({ sourceMap: false, extract: false })]
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -14,6 +14,6 @@ const webpackTestConfig = merge(webpackCommonConfig, {
   ]
 })
 
-delete webpackTestConfig.entry
+delete webpackTestConf.entry
 
-module.exports = webpackTestConfig
+module.exports = webpackTestConf

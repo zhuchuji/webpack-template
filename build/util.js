@@ -1,6 +1,6 @@
 const extractTextPlugin = require('extract-text-webpack-plugin')
 
-function setStyleRules (options) {
+function generateStyleRules (options) {
   options = options || {}
   var styleLoaders = [
     {
@@ -37,5 +37,5 @@ function setStyleRules (options) {
 }
 
 module.exports = {
-  setStyleRules
+  generateStyleRules
 }

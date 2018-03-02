@@ -1,6 +1,6 @@
 const path = require('path')
 
-const webpackConfig = {
+const webpackBaseConf = {
 	entry: {
 		app: './src/main.js',
 	},
@@ -52,4 +52,4 @@ const webpackConfig = {
 	}
 }
 
-module.exports = webpackConfig
+module.exports = webpackBaseConf
